@@ -1,0 +1,2 @@
+#! /bin/sh
+reflector --verbose -c AT -c BY -c BE -c BA -c BG -c DK -c FI -c FR -c GE -c DE -c GR -c IE -c LU -c MC -c NL -c NO -c ES -c SE -c CH -c GB --protocol https --sort score --latest 10 --download-timeout 5 --save /etc/pacman.d/mirrorlist
