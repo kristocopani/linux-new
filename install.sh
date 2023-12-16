@@ -48,3 +48,7 @@ git_init() {
     fi
 
 }
+
+reflector_init
+git_init
+gitconfig_init
