@@ -1,15 +1,15 @@
 #! /bin/bash
 reflector_init() {
-    reflector_install_status="pacman -Qs reflector"
-    if [ -ne "$reflector_install_status" ]; then
+    reflector_install_status="sudo pacman -Qs reflector"
+    if [ -n "$reflector_install_status" ]; then
         echo "${GREEN}Reflector is installed"
         echo "${YELLOW}Configuring Reflector"
         sudo reflector --verbose -c AT -c BY -c BE -c BA -c BG -c DK -c FI -c FR -c GE -c DE -c GR -c IE -c LU -c MC -c NL -c NO -c ES -c SE -c CH -c GB --protocol score --sort score --latest 10 --download-timeout 5 --save /etc/pacman.d/mirrorlist >/dev/null
     else
         echo "${RED}Reflector is not installed"
         sudo pacman -S reflector --noconfirm >/dev/null
-        reflector_install_status="pacman -Qs reflector"
-        if [ -ne "$reflector_install_status" ]; then
+        reflector_install_status="sudo pacman -Qs reflector"
+        if [ -n "$reflector_install_status" ]; then
             echo "${GREEN}Reflector installed successfully"
             echo "${YELLOW}Configuring Reflector"
             sudo reflector --verbose -c AT -c BY -c BE -c BA -c BG -c DK -c FI -c FR -c GE -c DE -c GR -c IE -c LU -c MC -c NL -c NO -c ES -c SE -c CH -c GB --protocol score --sort score --latest 10 --download-timeout 5 --save /etc/pacman.d/mirrorlist >/dev/null
@@ -28,15 +28,15 @@ gitconfig_init() {
     git config --global user.email "$email" >/dev/null
 }
 git_init() {
-    git_install_status="pacman -Qs git"
-    if [ -ne "$git_install_status" ]; then
+    git_install_status="sudo pacman -Qs git"
+    if [ -n "$git_install_status" ]; then
         echo "${GREEN}Git is installed"
         gitconfig_init
     else
         echo "${RED}Git is not installed"
         echo "${YELLOW}Installing Git"
         sudo pacman -S git --noconfirm >/dev/null
-        if [ -ne "$git_install_status" ]; then
+        if [ -n "$git_install_status" ]; then
             echo "${GREEN}Git installed successfully"
             echo "${YELLOW}Configuring Git"
             gitconfig_init
@@ -50,5 +50,5 @@ git_init() {
 }
 
 reflector_init
-git_init
-gitconfig_init
+#git_init
+#gitconfig_init
