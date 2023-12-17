@@ -155,6 +155,7 @@ install() {
 reflector_install_init
 git_init
 enable_bluetooth_init
+sudo pacman -Sy 1> /dev/null
 install_yay
 enable_multilib
 set_preferences
