@@ -152,4 +152,10 @@ install() {
     yay -S ulauncher --noconfirm >/dev/null
 }
 
+reflector_install_init
+git_init
+enable_bluetooth_init
+install_yay
+enable_multilib
 set_preferences
+install
